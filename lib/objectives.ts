@@ -109,20 +109,22 @@ print(patient_name)`,
       story:
         "*scratches behind ear with hind leg* Now we gotta combine these text strings. The system needs a full formatted message.",
       imageUrl: "/images/reception.jpg",
-      initialCode: `# Combine the first and last name
-first_name = "Jane"
-last_name = "Smith"
-full_name = first_name + " " + last_name
+      initialCode: `# Patient ID formatting - BUG: Missing space!
+first = "Jane"
+last = "Smith"
+
+# BUG: The strings are concatenated but missing the space between them!
+full_name = first + last
 print(full_name)`,
-      objective: "Combine two strings together using concatenation.",
+      objective: "Fix the string concatenation - add a space between the first and last name.",
       requirements: [
-        "Use the + operator to join strings",
-        "Add a space between the strings",
-        "Print the combined result"
+        "Use the + operator with three parts: first + ' ' + last",
+        "Add quotes with a space inside: ' '",
+        "Combine: first + ' ' + last"
       ],
       expectedOutput: "Jane Smith",
-      hint: "Join strings with + and include a space: first + ' ' + last",
-      errorFeedback: "Don't forget the space between names. Use + with a ' ' in the middle or an f-string."
+      hint: "Concatenate three parts: variable + space + variable",
+      errorFeedback: "Add ' ' (space in quotes) between the variables: first + ' ' + last"
     },
     3: {
       part: 3,
@@ -156,23 +158,23 @@ print(total_rooms)`,
         "*Stack stops and growls softly* Multiple doors, but only one is safe. We need conditional logic to make the right choice. One wrong move and... well, let's not find out.",
       story: "If statements let us make decisions. Check the door code and only proceed if it's safe!",
       imageUrl: "/images/waiting-room.jpg",
-      initialCode: `# Check if the door code is correct
+      initialCode: `# Check if the door code is correct - but something's wrong!
 door_code = 1234
 user_input = 1234
 
-if user_input == door_code:
+if user_input = door_code:  # BUG: Missing a '=' sign!
     print("Door unlocked!")
-else:
+else
     print("Access denied")`,
-      objective: "Use an if statement to check a condition and execute code based on the result.",
+      objective: "Fix the bugged door lock code to check if the entry matches the correct door code.",
       requirements: [
-        "Write an if statement with a condition",
-        "Use a comparison operator (==, !=, >, <)",
-        "Include a colon (:) and proper indentation"
+        "Fix the comparison operator (needs == instead of =)",
+        "Fix the else statement (needs a colon : after else)",
+        "Make sure the condition properly compares the values"
       ],
       expectedOutput: "Door unlocked!",
-      hint: "if condition: then indent the block. Use == to compare values",
-      errorFeedback: "Use == to compare equality. Check capitalization and punctuation in the printed text."
+      hint: "Use == to compare equality. Don't forget the colon after else!",
+      errorFeedback: "Use == for comparison (not =), and add a colon after else."
     },
     2: {
       part: 2,
@@ -180,22 +182,23 @@ else:
       roomTitle: "The Waiting Room",
       story: "*ears perk up* Sometimes we need a backup plan. Use else to handle when the condition is False.",
       imageUrl: "/images/waiting-room.jpg",
-      initialCode: `# Check the patient's temperature
+      initialCode: `# Emergency patient monitoring system - incomplete!
+# TODO: Complete the temperature check logic
 temperature = 38.5
 
-if temperature > 37.5:
-    print("Fever detected")
-else:
-    print("Temperature normal")`,
-      objective: "Handle two different outcomes using if-else logic.",
+# FIX: Add the missing conditional logic here
+# Should check if temperature exceeds normal (37.5)
+# Print "Fever detected" if above normal, else print "Temperature normal"
+`,
+      objective: "Complete the missing patient temperature monitoring logic using if-else statements.",
       requirements: [
-        "Use an if statement for the first condition",
-        "Add an else clause for the alternative",
-        "Both branches should have proper indentation"
+        "Add an if statement to check if temperature > 37.5",
+        "Print 'Fever detected' if temperature is high",
+        "Add an else clause to print 'Temperature normal'"
       ],
       expectedOutput: "Fever detected",
-      hint: "Use if ... else for two branches. Remember the colon and indentation",
-      errorFeedback: "Check the threshold: it's > 37.5, not >=. Output text must match exactly."
+      hint: "Use if temperature > 37.5: then indent print statements for both cases",
+      errorFeedback: "Add the if condition with proper indentation. Don't forget the else clause."
     },
     3: {
       part: 3,
@@ -204,24 +207,25 @@ else:
       story:
         "This lock has multiple security levels. We need elif to check several conditions in order. *investigates with magnifying glass*",
       imageUrl: "/images/waiting-room.jpg",
-      initialCode: `# Determine access level based on clearance
+      initialCode: `# Security access system - multiple levels
 clearance_level = 3
 
-if clearance_level >= 5:
-    print("Full access granted")
-elif clearance_level >= 3:
+# FIXME: The order of these checks is WRONG and causes security issues!
+if clearance_level >= 3:
     print("Partial access granted")
+elif clearance_level >= 5:
+    print("Full access granted")
 else:
     print("Access denied")`,
-      objective: "Check multiple conditions using if, elif, and else statements.",
+      objective: "Fix the security system by reordering the conditional checks from highest to lowest priority.",
       requirements: [
-        "Start with an if statement",
-        "Add elif for additional conditions",
-        "End with else for remaining cases"
+        "Reorder checks from highest (>= 5) to lowest (< 3)",
+        "Use if for highest access, elif for middle, else for denied",
+        "Ensure proper order prevents lower levels from matching first"
       ],
       expectedOutput: "Partial access granted",
-      hint: "Order your checks with if/elif/else from most specific to least",
-      errorFeedback: "Order matters: the >=5 check must come before >=3. Ensure exact output text."
+      hint: "Always check highest thresholds first in if/elif chains to prevent early matches",
+      errorFeedback: "Put the >= 5 check BEFORE >= 3, otherwise partial access will trigger first for level 5+."
     }
   },
   4: {
@@ -233,22 +237,23 @@ else:
         "*Stack sniffs medicine bottles carefully* The pharmacy inventory system is corrupted. We need boolean logic to find the right medications. This is getting serious - I can hear something in the vents...",
       story: "We need to compare values precisely. The wrong medication could be dangerous!",
       imageUrl: "/images/pharmacy.jpg",
-      initialCode: `# Check if the medication is in stock
+      initialCode: `# Check if critical medication is in stock
 medication_count = 15
 
-if medication_count > 10:
+# BUG: The threshold is wrong! It should check if count is greater than or equal to 15 (critical stock level)
+if medication_count > 15:
     print("In stock")
 else:
     print("Low stock")`,
-      objective: "Use comparison operators to evaluate numeric conditions.",
+      objective: "Fix the medication inventory check - it's using the wrong comparison operator.",
       requirements: [
-        "Use operators like ==, !=, <, >, <=, >=",
-        "Compare numeric values",
-        "Make decisions based on the comparison"
+        "Change the comparison operator to >= 15 (not just > 15)",
+        "The medication_count is 15, which should be considered 'In stock'",
+        "Print 'In stock' when count meets or exceeds the threshold"
       ],
       expectedOutput: "In stock",
-      hint: "Comparison operators: ==, !=, <, >, <=, >=",
-      errorFeedback: "Use a numeric comparison, not a string. The condition is > 10, so 15 is 'In stock'."
+      hint: "Use >= for 'greater than or equal to'. Count of exactly 15 should be 'In stock'",
+      errorFeedback: "Change > 15 to >= 15. At exactly 15 units, the medication should still be considered in stock."
     },
     2: {
       part: 2,
@@ -257,23 +262,26 @@ else:
       story:
         "*whimpers nervously* Multiple conditions at once! Use 'and' when ALL must be true, 'or' when ANY can be true.",
       imageUrl: "/images/pharmacy.jpg",
-      initialCode: `# Check if patient can receive treatment
+      initialCode: `# Patient medication safety check - has a critical bug!
 age = 25
 has_insurance = True
+severity = "critical"
 
-if age >= 18 and has_insurance:
+# BUG: Wrong boolean operator - 'or' allows treatment with only ONE condition!
+# We need BOTH age >= 18 AND severity != 'critical' for safety
+if age >= 18 or severity != "critical":
     print("Treatment approved")
 else:
-    print("Treatment denied")`,
-      objective: "Combine multiple conditions using boolean logic (and/or).",
+    print("Treatment denied - too dangerous")`,
+      objective: "Fix the safety check - change the boolean operator from 'or' to 'and' for proper safety.",
       requirements: [
-        "Use 'and' to require both conditions to be true",
-        "Or use 'or' to require at least one condition",
-        "Test multiple variables in one if statement"
+        "Replace 'or' with 'and' to require BOTH conditions",
+        "Both age >= 18 AND severity != 'critical' must be true",
+        "Critical patients should be denied for safety"
       ],
-      expectedOutput: "Treatment approved",
-      hint: "Combine conditions with and/or: if a and b: ... or if a or b: ...",
-      errorFeedback: "Use 'and' here, not 'or'. Both conditions must be true for approval."
+      expectedOutput: "Treatment denied - too dangerous",
+      hint: "Use 'and' when BOTH conditions must be true. 'or' means ANY condition can be true.",
+      errorFeedback: "Change 'or' to 'and'. Critical patients should NOT be treated even if they're 18+."
     },
     3: {
       part: 3,
@@ -282,26 +290,26 @@ else:
       story:
         "The final safe has nested security. We need if statements INSIDE if statements. *paws shaking slightly*",
       imageUrl: "/images/pharmacy.jpg",
-      initialCode: `# Complex access control system
-security_level = 3
+      initialCode: `# Restricted medication access - missing nested condition!
+security_level = 5
 has_keycard = True
 
-if security_level >= 5:
-    if has_keycard:
-        print("Full access granted")
-    else:
-        print("Keycard required")
-else:
-    print("Insufficient clearance")`,
-      objective: "Create nested if statements to handle complex decision logic.",
+# TODO: Add proper nested logic
+# First check: Is security level high enough (>= 5)?
+# Then check nested: Does user have a keycard?
+# Print accordingly for: Full access, Keycard required, or Insufficient clearance
+`,
+      objective: "Complete the nested security check - add the missing nested if statement for keycard verification.",
       requirements: [
-        "Place an if statement inside another if statement",
-        "Use proper indentation for nested blocks",
-        "Handle multiple levels of conditions"
+        "First check if security_level >= 5",
+        "If yes, then check if has_keycard (nested if inside)",
+        "Print 'Full access granted' only if both checks pass",
+        "Add else for 'Keycard required' within the outer if",
+        "Add else for 'Insufficient clearance' for outer if"
       ],
-      expectedOutput: "Insufficient clearance",
-      hint: "Indent nested if blocks consistently to reflect structure",
-      errorFeedback: "Mind the nesting. Only check keycard if security_level >= 5; otherwise print 'Insufficient clearance'."
+      expectedOutput: "Full access granted",
+      hint: "Indent the keycard check inside the security_level check. Two levels of if/else needed.",
+      errorFeedback: "Create nested if: if security_level >= 5: (indent) if has_keycard: (indent more) print 'Full access granted'"
     }
   },
   5: {
@@ -313,18 +321,23 @@ else:
         "*Stack's detective hat falls off as he runs* The lab equipment is running in loops! We need to master for loops to shut down these experiments before they... *CRASH* ...too late for that one.",
       story: "For loops repeat actions. We need to count through a sequence to disable the equipment!",
       imageUrl: "/images/laboratory.jpg",
-      initialCode: `# Print numbers 0 to 4 using range
+      initialCode: `# Lab shutdown sequence - malfunctioning counter!
+# Need to print 0 to 4 to disarm all 5 safety systems
+
+# BUG: Missing the print statement in the loop!
 for i in range(5):
-    print(i)`,
-      objective: "Use a for loop with range() to iterate a specific number of times.",
+    # TODO: Add the print statement here to output each number
+    
+# The loop should print each number from 0 to 4`,
+      objective: "Complete the shutdown sequence by adding the missing print statement inside the loop.",
       requirements: [
-        "Use the for keyword to create a loop",
-        "Use range() to generate numbers",
-        "Include a colon and proper indentation"
+        "Add print(i) inside the for loop (with proper indentation)",
+        "The range(5) goes from 0 to 4 inclusive",
+        "Print each number on a separate line"
       ],
       expectedOutput: "0\n1\n2\n3\n4",
-      hint: "range(n) yields 0..n-1; use for i in range(n): print(i)",
-      errorFeedback: "range(5) yields 0..4. Don't use range(1,5) unless you want 1..4."
+      hint: "Add print(i) inside the loop. Remember proper indentation (4 spaces or 1 tab).",
+      errorFeedback: "Add the print statement inside the for loop with proper indentation."
     },
     2: {
       part: 2,
@@ -332,19 +345,22 @@ for i in range(5):
       roomTitle: "The Laboratory",
       story: "*sniffs test tubes* We can loop through lists directly without counting. Much more elegant!",
       imageUrl: "/images/laboratory.jpg",
-      initialCode: `# Loop through a list of experiments
-experiments = ["Test A", "Test B", "Test C"]
-for experiment in experiments:
-    print(experiment)`,
-      objective: "Loop through each item in a list directly.",
+      initialCode: `# Process lab sample data
+samples = ["Blood", "Tissue", "DNA", "Urine"]
+
+# BUG: Trying to use an index that doesn't exist!
+# Should loop through the items directly, not use a counter
+for i in range(len(samples)):
+    print(samples[i])`,
+      objective: "Fix the loop - instead of using range() with indices, iterate directly through the list items.",
       requirements: [
-        "Use for...in syntax to iterate",
-        "Loop through a list variable",
-        "Access each item in the list"
+        "Change from for i in range(len(samples)) to for sample in samples",
+        "Access the item directly in the print statement",
+        "Remove the index access - just print the variable"
       ],
-      expectedOutput: "Test A\nTest B\nTest C",
-      hint: "Iterate lists directly: for item in items: print(item)",
-      errorFeedback: "Iterate the list itself, not indices, unless you need positions."
+      expectedOutput: "Blood\nTissue\nDNA\nUrine",
+      hint: "Iterate directly: for sample in samples: then print(sample), not print(samples[i])",
+      errorFeedback: "Loop through the list directly with 'for sample in samples:' and print(sample), not the indexed version."
     },
     3: {
       part: 3,
@@ -353,19 +369,21 @@ for experiment in experiments:
       story:
         "Sometimes we need BOTH the position AND the value. That's where enumerate() comes in! *tail wagging*",
       imageUrl: "/images/laboratory.jpg",
-      initialCode: `# Use enumerate to get index and value
+      initialCode: `# Lab sample tracking system
 samples = ["Blood", "Tissue", "DNA"]
-for index, sample in enumerate(samples):
-    print(f"Sample {index}: {sample}")`,
-      objective: "Use enumerate() to get both the index and value while looping.",
+
+# BUG: Not unpacking enumerate properly! Trying to treat it as a single value
+for sample_data in enumerate(samples):
+    print(f"Sample {sample_data[0]}: {sample_data[1]}")`,
+      objective: "Fix the enumerate unpacking - use proper tuple unpacking to get index and value separately.",
       requirements: [
-        "Use enumerate() function with a list",
-        "Unpack both index and value in the loop",
-        "Access both the position and item"
+        "Change the loop variable to unpack two values: for index, sample in enumerate(samples)",
+        "Use the unpacked variables directly in the print statement",
+        "Don't use square bracket indexing on the enumerate result"
       ],
       expectedOutput: "Sample 0: Blood\nSample 1: Tissue\nSample 2: DNA",
-      hint: "enumerate(list) yields (index, value). Start index at 1 with enumerate(list, 1)",
-      errorFeedback: "Make sure to unpack both parts: for index, value in enumerate(items): ..."
+      hint: "Unpack enumerate with two variables: for index, sample in enumerate(samples):",
+      errorFeedback: "Change to 'for index, sample in enumerate(samples):' to properly unpack both values at once."
     }
   },
   6: {
@@ -378,20 +396,24 @@ for index, sample in enumerate(samples):
       story:
         "While loops keep going as long as a condition is True. But be careful - infinite loops are dangerous!",
       imageUrl: "/images/patient-ward.jpg",
-      initialCode: `# Count down from 5 to 1 using while
+      initialCode: `# Patient monitoring countdown
 count = 5
+
+# BUG: INFINITE LOOP! The counter never decreases!
 while count > 0:
     print(count)
-    count = count - 1`,
-      objective: "Use a while loop to repeat code as long as a condition is true.",
+    # TODO: Decrement the counter to prevent infinite loop
+    
+# Should count down from 5 to 1`,
+      objective: "Fix the infinite loop - add the missing line to decrement the counter.",
       requirements: [
-        "Use the while keyword with a condition",
-        "Update the loop variable inside the loop",
-        "Include proper indentation"
+        "Add count = count - 1 inside the while loop",
+        "Place it after the print statement",
+        "Ensure proper indentation to match the print statement"
       ],
       expectedOutput: "5\n4\n3\n2\n1",
-      hint: "Ensure the loop variable changes or you risk an infinite loop",
-      errorFeedback: "Update the counter inside the loop: count = count - 1, or you'll loop forever."
+      hint: "Add 'count = count - 1' inside the loop with same indentation as print",
+      errorFeedback: "Add the decrement line: count = count - 1. Without it, the loop runs forever!"
     },
     2: {
       part: 2,
@@ -609,31 +631,34 @@ print(f"Final price: $${'{'}result{'}'}")`,
       story:
         "This challenge needs loops AND conditionals INSIDE a function. Real-world programming right here!",
       imageUrl: "/images/records-room.jpg",
-      initialCode: `# Function with loop and conditionals
-def count_critical_patients(patients):
-    count = 0
-    for patient in patients:
-        if patient['status'] == 'critical':
-            count = count + 1
-    return count
-
-# Test data
-patient_list = [
-    {'name': 'John', 'status': 'stable'},
-    {'name': 'Jane', 'status': 'critical'},
-    {'name': 'Bob', 'status': 'critical'}
+      initialCode: `# Analyze patient records to find critical cases
+patient_records = [
+    {'name': 'John Doe', 'status': 'stable', 'room': 101},
+    {'name': 'Jane Smith', 'status': 'critical', 'room': 205},
+    {'name': 'Bob Wilson', 'status': 'critical', 'room': 102},
+    {'name': 'Alice Brown', 'status': 'stable', 'room': 203}
 ]
-result = count_critical_patients(patient_list)
+
+# TODO: Complete the function to count critical patients using dictionaries
+def count_critical(patients):
+    # Add loop through patients
+    # Check if patient['status'] == 'critical'
+    # Increment count
+    # Return count
+
+
+result = count_critical(patient_records)
 print(f"Critical patients: {result}")`,
-      objective: "Combine loops and conditionals inside a function to process data.",
+      objective: "Complete the function to count critical patients by iterating through dictionary records.",
       requirements: [
-        "Create a function that accepts a parameter",
-        "Use a for loop to iterate through data",
-        "Use if statements to filter or count items"
+        "Add a for loop to iterate through the patients parameter",
+        "Add an if statement to check patient['status'] == 'critical'",
+        "Initialize and increment a counter variable",
+        "Return the final count"
       ],
       expectedOutput: "Critical patients: 2",
-      hint: "Loop through items and check fields with if ... == ...",
-      errorFeedback: "Compare exact string values (e.g., 'critical'). Case matters."
+      hint: "Use for patient in patients: then if patient['status'] == 'critical': increment a counter",
+      errorFeedback: "Add the loop and conditional logic. Remember dictionaries use ['key'] syntax and case sensitivity."
     },
     2: {
       part: 2,
@@ -642,27 +667,33 @@ print(f"Critical patients: {result}")`,
       story:
         "*sniffs frantically* We need a function that processes a list and returns filtered results. Data processing!",
       imageUrl: "/images/records-room.jpg",
-      initialCode: `# Function that processes a list and returns results
-def filter_and_transform(numbers):
-    result = []
-    for num in numbers:
-        if num > 10:
-            result.append(num * 2)
-    return result
+      initialCode: `# Security code processing - extracting valid codes
+codes = ["Room101", "Room205", "Invalid", "Room307", "Broken", "Room412"]
 
-# Test
-data = [5, 12, 8, 15, 20]
-output = filter_and_transform(data)
-print(output)`,
-      objective: "Build a new list by filtering and transforming data in a function.",
+# BUG: Should filter codes that start with "Room" and convert to uppercase
+# Then count how many valid ones we found
+valid_codes = []
+
+# TODO: Complete the loop to:
+# 1. Check if code starts with "Room"
+# 2. If yes, convert it to uppercase and append to valid_codes
+# 3. Print the list and count
+
+for code in codes:
+    pass  # Replace this!
+
+print(f"Valid codes: {valid_codes}")
+print(f"Count: {len(valid_codes)}")`,
+      objective: "Complete the function to filter codes starting with 'Room' and convert them to uppercase.",
       requirements: [
-        "Loop through a list inside a function",
-        "Use conditionals to filter items",
-        "Use .append() to build a result list"
+        "Add if statement: if code.startswith('Room'):",
+        "Use code.upper() to convert to uppercase",
+        "Use valid_codes.append(uppercase_code) to add to list",
+        "Properly indent all code inside the for loop"
       ],
-      expectedOutput: "[24, 30, 40]",
-      hint: "Append to lists with list.append(value) inside the loop",
-      errorFeedback: "Only numbers > 10 should be doubled and included. Don't print inside the function; return the list."
+      expectedOutput: "Valid codes: ['ROOM101', 'ROOM205', 'ROOM307', 'ROOM412']\nCount: 4",
+      hint: "Use code.startswith('Room') and code.upper(). Remember string methods need dot notation.",
+      errorFeedback: "Add if code.startswith('Room'): then append code.upper() to the list. Proper indentation required."
     },
     3: {
       part: 3,
@@ -671,29 +702,31 @@ print(output)`,
       story:
         "Nested loops - a loop inside a loop! The outer loop runs, and for EACH iteration, the inner loop completes fully. *mind blown*",
       imageUrl: "/images/records-room.jpg",
-      initialCode: `# Nested loops in a function
-def create_schedule(days, time_slots):
-    schedule = []
-    for day in days:
-        for time in time_slots:
-            schedule.append(f"{day} at {time}")
-    return schedule
+      initialCode: `# Generate all patient-room assignments
+patients = ['Alice', 'Bob']
+rooms = [101, 102, 103]
 
-# Test
-days = ['Monday', 'Tuesday']
-times = ['9:00', '14:00']
-result = create_schedule(days, times)
-for appointment in result:
-    print(appointment)`,
-      objective: "Use nested loops inside a function to generate combinations.",
+# BUG: Only has ONE loop instead of nested loops!
+# Should create combinations: Alice-101, Alice-102, etc.
+assignments = []
+
+# TODO: Add the missing outer loop and fix the logic
+for patient in patients:
+    # Something is missing here - we need a nested loop!
+    for room in rooms:
+        assignments.append(f"{patient} -> Room {room}")
+
+for assignment in assignments:
+    print(assignment)`,
+      objective: "Fix the nested loops - ensure BOTH loops are properly structured to create all patient-room combinations.",
       requirements: [
-        "Create a function with nested for loops",
-        "Loop through multiple lists",
-        "Combine elements from different lists"
+        "Verify the outer loop iterates through patients",
+        "Verify the inner loop iterates through rooms",
+        "Each iteration of the outer loop should complete ALL inner loop iterations"
       ],
-      expectedOutput: "Monday at 9:00\nMonday at 14:00\nTuesday at 9:00\nTuesday at 14:00",
-      hint: "Nest loops to produce combinations: for a in A: for b in B: ...",
-      errorFeedback: "Use two loops (not zip). Append each combination as a formatted string in order."
+      expectedOutput: "Alice -> Room 101\nAlice -> Room 102\nAlice -> Room 103\nBob -> Room 101\nBob -> Room 102\nBob -> Room 103",
+      hint: "Both loops should be present with proper indentation. The inner loop should be indented under the outer loop.",
+      errorFeedback: "Ensure both the for patient loop and for room loop are present with correct nesting (inner loop indented)."
     }
   },
   10: {
