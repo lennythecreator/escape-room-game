@@ -13,9 +13,10 @@ interface CodeEditorProps {
   hint: string
   onSuccess: () => void
   validateOutput?: (output: string) => boolean
+  errorFeedback?: string
 }
 
-export function CodeEditor({ initialCode, expectedOutput, hint, onSuccess, validateOutput }: CodeEditorProps) {
+export function CodeEditor({ initialCode, expectedOutput, hint, onSuccess, validateOutput, errorFeedback }: CodeEditorProps) {
   const [code, setCode] = useState(initialCode)
   const [output, setOutput] = useState<string>("")
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null)
@@ -66,10 +67,10 @@ export function CodeEditor({ initialCode, expectedOutput, hint, onSuccess, valid
         onSuccess()
       }, 1500)
     } else {
-      setFeedback({
-        type: "error",
-        message: `Incorrect output. Expected: "${expectedOutput}" but got: "${result.output}"`,
-      })
+      const message = errorFeedback
+        ? `Tip: ${errorFeedback}`
+        : `Incorrect output. Expected: "${expectedOutput}" but got: "${result.output}"`
+      setFeedback({ type: "error", message })
     }
 
     setIsRunning(false)
