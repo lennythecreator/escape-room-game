@@ -257,6 +257,32 @@ export default function DevView() {
                                 </Card>
                               </div>
 
+                              {/* Solution (Developer Only) */}
+                              {objective.solutionNotes && (
+                                <div>
+                                  <div className="flex items-center justify-between mb-2">
+                                    <h4 className="font-mono font-semibold text-blue-600 dark:text-blue-400">
+                                      Solution (Dev)
+                                    </h4>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={() => copyToClipboard(objective.solutionNotes || "")}
+                                    >
+                                      <Copy className="w-3 h-3 mr-1" />
+                                      Copy
+                                    </Button>
+                                  </div>
+                                  <Card className="p-4 bg-blue-500/10 border-blue-500/20">
+                                    <pre className="text-xs font-mono whitespace-pre-wrap">
+                                      <code className="text-blue-700 dark:text-blue-400">
+                                        {objective.solutionNotes}
+                                      </code>
+                                    </pre>
+                                  </Card>
+                                </div>
+                              )}
+
                               {/* Hint */}
                               <div>
                                 <h4 className="font-mono font-semibold mb-2 text-orange-600 dark:text-orange-400">

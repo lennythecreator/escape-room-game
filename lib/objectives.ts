@@ -11,6 +11,8 @@ export interface ObjectiveType {
   roomIntro?: string;
   story: string;
   errorFeedback: string;
+  // Developer-only helpers (used in /app/dev-view)
+  solutionNotes?: string;
   }
   
   export const objectives: Record<number, Record<number, ObjectiveType>> = {
@@ -27,6 +29,7 @@ export interface ObjectiveType {
   requirements: ["Do not change the list", "Use correct indexing", "Print a single word"],
   expectedOutput: "WAKE",
   hint: "Think about where lists begin.",
+  solutionNotes: "Index the first element: print(words[0])",
   errorFeedback: "You printed the whole list. Stack tilts his head and sighs like a disappointed linter."
   },
   2: {
@@ -40,6 +43,7 @@ export interface ObjectiveType {
   requirements: ["Do not reorder the list", "Select the right index", "Print a single word"],
   expectedOutput: "UP",
   hint: "Remember how list positions start counting.",
+  solutionNotes: "Select index 1: print(words[1])",
   errorFeedback: "Wrong token. The lock expected the second word and you gave it the third."
   },
   3: {
@@ -53,6 +57,7 @@ export interface ObjectiveType {
   requirements: ["Do not modify the words", "Use indexing, not slicing", "Print exactly the last item"],
   expectedOutput: "RAVENCREST,",
   hint: "Reach for the tail of the list.",
+  solutionNotes: "Select last item: print(words[-1])",
   errorFeedback: "That was the first tile. The sensor flashed red. Stack covers his eyes with a paw."
   }
   },
@@ -69,6 +74,7 @@ export interface ObjectiveType {
   requirements: ["Keep the variable name", "Use a string method", "Do not hardcode the final word"],
   expectedOutput: "STACK",
   hint: "Change its tone without changing its letters.",
+  solutionNotes: "Use upper(): print(name.upper())",
   errorFeedback: "Too quiet. The sensor wants uppercase. Stack barks to demonstrate."
   },
   2: {
@@ -82,6 +88,7 @@ export interface ObjectiveType {
   requirements: ["Use the dictionary provided", "Do not add new keys", "Select the correct key"],
   expectedOutput: "THE",
   hint: "Ask the cabinet for the definite one.",
+  solutionNotes: "Use the 'the' key: print(articles['the']) or .get('the')",
   errorFeedback: "Wrong drawer. You returned A when the lock wanted THE."
   },
   3: {
@@ -95,6 +102,7 @@ export interface ObjectiveType {
   requirements: ["Do not change the list", "Index correctly", "Print a single string"],
   expectedOutput: "DOG",
   hint: "Pick the first tag, not the crate.",
+  solutionNotes: "Index first element: print(animals[0])",
   errorFeedback: "You dragged the whole list to the scanner. Stack looks offended but patient."
   }
   },
@@ -111,6 +119,7 @@ export interface ObjectiveType {
   requirements: ["Do not replace the string", "Use a string method", "Keep the comma"],
   expectedOutput: "DETECTIVE,",
   hint: "Make the headline shout, not whisper.",
+  solutionNotes: "Use upper(): print(title.upper())",
   errorFeedback: "Half measure. The monitor wants shouting, not polite capitalization."
   },
   2: {
@@ -124,6 +133,7 @@ export interface ObjectiveType {
   requirements: ["Do not change variable value", "Fix the branch logic", "Keep the same two strings"],
   expectedOutput: "UNLOCKED",
   hint: "Consider the opposite condition.",
+  solutionNotes: "Flip branch: if not locked: print('UNLOCKED') else: print('LOCKED')",
   errorFeedback: "You declared it locked and locked it. The door laughs in beeps."
   },
   3: {
@@ -137,6 +147,7 @@ export interface ObjectiveType {
   requirements: ["Do not edit the parts", "Avoid reversing", "Join without spaces"],
   expectedOutput: "DOORS,",
   hint: "Join the pieces as-is, no flipping.",
+  solutionNotes: "Join without reverse: print(''.join(parts))",
   errorFeedback: "Backward assembly. Stack taps the second tile then the first."
   }
   },
@@ -153,6 +164,7 @@ export interface ObjectiveType {
   requirements: ["Keep the words list", "Fix the comparison", "Print the matching token"],
   expectedOutput: "TRUST",
   hint: "Match the case the sign expects.",
+  solutionNotes: "Compare uppercase or to 'TRUST' then pick",
   errorFeedback: "Case of the missing case. The scanner gave you the default fallback."
   },
   2: {
@@ -166,6 +178,7 @@ export interface ObjectiveType {
   requirements: ["Do not change dictionary values", "Use the right key case", "Keep the print structure"],
   expectedOutput: "THE",
   hint: "Ask using the exact label you see.",
+  solutionNotes: "Use uppercase key: d.get('THE')",
   errorFeedback: "You asked for a non existent key. The machine shrugs and chooses LOGS."
   },
   3: {
@@ -179,6 +192,7 @@ export interface ObjectiveType {
   requirements: ["Do not change the call", "Modify only the return", "Return the left value"],
   expectedOutput: "DOG",
   hint: "Give back the first thing you were handed.",
+  solutionNotes: "Return first param: return a",
   errorFeedback: "Second guess. The cabinet hands you CAT when DOG was requested."
   }
   },
@@ -195,6 +209,7 @@ export interface ObjectiveType {
   requirements: ["Do not mutate the list", "Use correct index", "Return a single word"],
   expectedOutput: "YET",
   hint: "Start at the beginning.",
+  solutionNotes: "Use index 0: print(tokens[0])",
   errorFeedback: "Middle child chosen. The sensor goes quiet in protest."
   },
   2: {
@@ -208,6 +223,7 @@ export interface ObjectiveType {
   requirements: ["Keep the dictionary as is", "Use the correct key", "Do not change default"],
   expectedOutput: "THE",
   hint: "Use the tag exactly as given.",
+  solutionNotes: "Lookup with original key: print(d.get(key))",
   errorFeedback: "Case mismatch. The machine defaulted to LOGS."
   },
   3: {
@@ -221,6 +237,7 @@ export interface ObjectiveType {
   requirements: ["Do not add letters", "Fix the slice or join", "No spaces"],
   expectedOutput: "LOGS",
   hint: "Don’t leave any pieces out.",
+  solutionNotes: "Join full list: print(''.join(letters))",
   errorFeedback: "Off by one. The printout reads LOG and the door is unimpressed."
   }
   },
@@ -237,6 +254,7 @@ export interface ObjectiveType {
   requirements: ["Do not sort", "Use correct index", "Print a single token"],
   expectedOutput: "SAY",
   hint: "Lead with the first word.",
+  solutionNotes: "Use index 0: print(words[0])",
   errorFeedback: "Whispered the wrong word. The monitor pretends not to hear you."
   },
   2: {
@@ -250,6 +268,7 @@ export interface ObjectiveType {
   requirements: ["Keep keys as is", "Use correct key", "No new keys added"],
   expectedOutput: "HE",
   hint: "Use the drawer marked the same way.",
+  solutionNotes: "Use correct key: print(pronouns['HE'])",
   errorFeedback: "Wrong drawer again. The cabinet returns nothing useful."
   },
   3: {
@@ -271,6 +290,7 @@ print(last_patient)`,
   requirements: ["Do not change the patient data", "Compare the admission dates to find the latest one", "Only use variables already provided"],
   expectedOutput: "Ada",
   hint: "You need to check more than just their order.",
+  solutionNotes: "Track max by admitted date string, pick name",
   errorFeedback: "You hear a faint voice, but it fades. Are you sure you found the most recent patient here?"
   }
   },
@@ -287,6 +307,7 @@ print(last_patient)`,
   requirements: ["Do not change the letters", "Avoid sorting", "Join in original order"],
   expectedOutput: "HERE",
   hint: "Assemble without rearranging.",
+  solutionNotes: "Join unsorted letters: print(''.join(letters))",
   errorFeedback: "Alphabet soup. The display says EEHR and Stack groans."
   },
   2: {
@@ -300,6 +321,7 @@ print(last_patient)`,
   requirements: ["Do not reorder the list", "Print exactly one word", "Use an index, no loops"],
   expectedOutput: "BEFORE",
   hint: "Choose what comes first, literally.",
+  solutionNotes: "Index 0: print(words[0])",
   errorFeedback: "The scalpel slips. You chose too late; only what comes first will do."
   },
   3: {
@@ -313,6 +335,7 @@ print(last_patient)`,
   requirements: ["Keep the same word", "Do not strip punctuation", "Print exactly as stored"],
   expectedOutput: "ALIVE.",
   hint: "Don’t edit the punctuation.",
+  solutionNotes: "Print as-is: print(word)",
   errorFeedback: "No punctuation, no passage. Stack taps the dot decal with his nose."
   }
   },
@@ -329,6 +352,7 @@ print(last_patient)`,
   requirements: ["Use the dict to find the connector key", "Use the list to verify or retrieve it", "Print exactly one word"],
   expectedOutput: "AND",
   hint: "Find the label first, then use the list to confirm it.",
+  solutionNotes: "label = rules[mode]; print(label)",
   errorFeedback: "You pointed to the mode itself, not its connector. The levers don’t budge."
   },
   2: {
@@ -342,6 +366,7 @@ print(last_patient)`,
   requirements: ["Use the dict to translate each step", "Apply all steps to count", "Do not change the provided steps"],
   expectedOutput: "THEN",
   hint: "Translate each step into its effect before applying it.",
+  solutionNotes: "for s in steps: count += deltas[s]",
   errorFeedback: "You read the script but never acted. The chamber clock doesn’t move."
   },
   3: {
@@ -355,6 +380,7 @@ print(last_patient)`,
   requirements: ["Use both the list and each entry’s fields", "Prefer longer matches", "Respect the tag flag"],
   expectedOutput: "RETURNED",
   hint: "Check both the mark and the length before you choose.",
+  solutionNotes: "Filter tag True and 'URN', pick longest text",
   errorFeedback: "You traced a short, unmarked line. The longest cable stays unlatched."
   }
   },
@@ -371,6 +397,7 @@ print(last_patient)`,
   requirements: ["Do not sort", "Use the correct index", "Print a single token"],
   expectedOutput: "FROM",
   hint: "Go with the first option.",
+  solutionNotes: "Index 0: print(preps[0])",
   errorFeedback: "Wrong direction. The cabinet rolls the other way."
   },
   2: {
@@ -384,6 +411,7 @@ print(last_patient)`,
   requirements: ["No new strings", "Select the correct item", "Do not reorder the list"],
   expectedOutput: "THE",
   hint: "Avoid the tail; aim for the front.",
+  solutionNotes: "Select first: print(arts[0])",
   errorFeedback: "Indefinite mistake. The lock wanted THE."
   },
   3: {
@@ -397,6 +425,7 @@ print(last_patient)`,
   requirements: ["Use the existing dict", "Select by key", "Print a single word"],
   expectedOutput: "SERVER",
   hint: "Open the folder and read the label inside.",
+  solutionNotes: "Print value by key: print(source['name'])",
   errorFeedback: "Braces on screen. The reader wanted the label inside."
   }
   },
@@ -413,6 +442,7 @@ print(last_patient)`,
   requirements: ["Do not change the list", "Use correct index", "Print a single word"],
   expectedOutput: "BUT",
   hint: "Take the turn, not the continuation.",
+  solutionNotes: "Index 1: print(options[1])",
   errorFeedback: "Too gentle. The story needs a turn, not a continuation."
   },
   2: {
@@ -426,6 +456,7 @@ print(last_patient)`,
   requirements: ["Do not change the mapping keys/values", "Normalize the flag string", "Use the dictionary lookup"],
   expectedOutput: "NEVER",
   hint: "Match the console’s case before you ask.",
+  solutionNotes: "Normalize flag: print(mapping.get(flag.upper()))",
   errorFeedback: "Unnormalized input. The core returns nothing and the door stays sealed."
   },
   3: {
@@ -439,6 +470,7 @@ print(last_patient)`,
   requirements: ["Do not alter the words", "Join with single spaces", "Keep commas as part of the tokens", "Do not change case"],
   expectedOutput: "WAKE UP RAVENCREST, STACK THE DOG DETECTIVE, UNLOCKED THE DOORS, BUT THE LOGS SAY HE WAS NEVER ALIVE.",
   hint: "Assemble the line without changing how it’s written.",
+  solutionNotes: "Remove lower(): sentence = ' '.join(pieces); print(sentence)",
   errorFeedback: "You hushed the reveal. The console wanted the truth exactly as collected."
   }
   }
