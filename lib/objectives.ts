@@ -26,7 +26,7 @@ export interface ObjectiveType {
   objective: "Print only the first element of the list.",
   requirements: ["Do not change the list", "Use correct indexing", "Print a single word"],
   expectedOutput: "WAKE",
-  hint: "Use words[0].",
+  hint: "Think about where lists begin.",
   errorFeedback: "You printed the whole list. Stack tilts his head and sighs like a disappointed linter."
   },
   2: {
@@ -39,7 +39,7 @@ export interface ObjectiveType {
   objective: "Print only the second element of the list.",
   requirements: ["Do not reorder the list", "Select the right index", "Print a single word"],
   expectedOutput: "UP",
-  hint: "Lists are zero indexed.",
+  hint: "Remember how list positions start counting.",
   errorFeedback: "Wrong token. The lock expected the second word and you gave it the third."
   },
   3: {
@@ -52,7 +52,7 @@ export interface ObjectiveType {
   objective: "Print the last element of the list.",
   requirements: ["Do not modify the words", "Use indexing, not slicing", "Print exactly the last item"],
   expectedOutput: "RAVENCREST,",
-  hint: "words[-1] or words[2] both work here.",
+  hint: "Reach for the tail of the list.",
   errorFeedback: "That was the first tile. The sensor flashed red. Stack covers his eyes with a paw."
   }
   },
@@ -68,7 +68,7 @@ export interface ObjectiveType {
   objective: "Print the name in uppercase.",
   requirements: ["Keep the variable name", "Use a string method", "Do not hardcode the final word"],
   expectedOutput: "STACK",
-  hint: "Try using a string method.",
+  hint: "Change its tone without changing its letters.",
   errorFeedback: "Too quiet. The sensor wants uppercase. Stack barks to demonstrate."
   },
   2: {
@@ -81,7 +81,7 @@ export interface ObjectiveType {
   objective: "Print the token for the definite article.",
   requirements: ["Use the dictionary provided", "Do not add new keys", "Select the correct key"],
   expectedOutput: "THE",
-  hint: "The key for the definite article is 'the'.",
+  hint: "Ask the cabinet for the definite one.",
   errorFeedback: "Wrong drawer. You returned A when the lock wanted THE."
   },
   3: {
@@ -94,7 +94,7 @@ export interface ObjectiveType {
   objective: "Print only the first animal name.",
   requirements: ["Do not change the list", "Index correctly", "Print a single string"],
   expectedOutput: "DOG",
-  hint: "Use animals[0].",
+  hint: "Pick the first tag, not the crate.",
   errorFeedback: "You dragged the whole list to the scanner. Stack looks offended but patient."
   }
   },
@@ -110,7 +110,7 @@ export interface ObjectiveType {
   objective: "Print the title in full uppercase.",
   requirements: ["Do not replace the string", "Use a string method", "Keep the comma"],
   expectedOutput: "DETECTIVE,",
-  hint: "Try title.upper().",
+  hint: "Make the headline shout, not whisper.",
   errorFeedback: "Half measure. The monitor wants shouting, not polite capitalization."
   },
   2: {
@@ -123,7 +123,7 @@ export interface ObjectiveType {
   objective: "Print UNLOCKED when locked is False.",
   requirements: ["Do not change variable value", "Fix the branch logic", "Keep the same two strings"],
   expectedOutput: "UNLOCKED",
-  hint: "Reverse the messages or check not locked.",
+  hint: "Consider the opposite condition.",
   errorFeedback: "You declared it locked and locked it. The door laughs in beeps."
   },
   3: {
@@ -136,7 +136,7 @@ export interface ObjectiveType {
   objective: "Join parts in the correct order to form the word.",
   requirements: ["Do not edit the parts", "Avoid reversing", "Join without spaces"],
   expectedOutput: "DOORS,",
-  hint: "Use ''.join(parts).",
+  hint: "Join the pieces as-is, no flipping.",
   errorFeedback: "Backward assembly. Stack taps the second tile then the first."
   }
   },
@@ -152,7 +152,7 @@ export interface ObjectiveType {
   objective: "Select and print TRU ST only when it matches by case.",
   requirements: ["Keep the words list", "Fix the comparison", "Print the matching token"],
   expectedOutput: "TRUST",
-  hint: "Compare to 'TRUST' or normalize both sides.",
+  hint: "Match the case the sign expects.",
   errorFeedback: "Case of the missing case. The scanner gave you the default fallback."
   },
   2: {
@@ -165,7 +165,7 @@ export interface ObjectiveType {
   objective: "Make the condition truthy for the uppercase THE key.",
   requirements: ["Do not change dictionary values", "Use the right key case", "Keep the print structure"],
   expectedOutput: "THE",
-  hint: "Use d.get('THE').",
+  hint: "Ask using the exact label you see.",
   errorFeedback: "You asked for a non existent key. The machine shrugs and chooses LOGS."
   },
   3: {
@@ -178,7 +178,7 @@ export interface ObjectiveType {
   objective: "Fix the function to return its first argument.",
   requirements: ["Do not change the call", "Modify only the return", "Return the left value"],
   expectedOutput: "DOG",
-  hint: "Return a.",
+  hint: "Give back the first thing you were handed.",
   errorFeedback: "Second guess. The cabinet hands you CAT when DOG was requested."
   }
   },
@@ -194,7 +194,7 @@ export interface ObjectiveType {
   objective: "Print the first token only.",
   requirements: ["Do not mutate the list", "Use correct index", "Return a single word"],
   expectedOutput: "YET",
-  hint: "Index 0 is the first element.",
+  hint: "Start at the beginning.",
   errorFeedback: "Middle child chosen. The sensor goes quiet in protest."
   },
   2: {
@@ -207,7 +207,7 @@ export interface ObjectiveType {
   objective: "Retrieve the uppercase key correctly.",
   requirements: ["Keep the dictionary as is", "Use the correct key", "Do not change default"],
   expectedOutput: "THE",
-  hint: "Use d.get(key).",
+  hint: "Use the tag exactly as given.",
   errorFeedback: "Case mismatch. The machine defaulted to LOGS."
   },
   3: {
@@ -220,7 +220,7 @@ export interface ObjectiveType {
   objective: "Print LOGS by joining all parts.",
   requirements: ["Do not add letters", "Fix the slice or join", "No spaces"],
   expectedOutput: "LOGS",
-  hint: "Join the full list.",
+  hint: "Don’t leave any pieces out.",
   errorFeedback: "Off by one. The printout reads LOG and the door is unimpressed."
   }
   },
@@ -231,12 +231,12 @@ export interface ObjectiveType {
   roomTitle: "Patient Ward",
   roomIntro: "Stack pricks his ears at a whisper. \"Say it clearly.\"",
   story: "You picked the second word. The sensor wants the first.",
-  imageUrl: "/images/patient-ward.jpg",
+  imageUrl: "/Room6-1.png",
   initialCode: 'words = ["SAY", "WHISPER"] print(words[1])',
   objective: "Print the first word only.",
   requirements: ["Do not sort", "Use correct index", "Print a single token"],
   expectedOutput: "SAY",
-  hint: "words[0].",
+  hint: "Lead with the first word.",
   errorFeedback: "Whispered the wrong word. The monitor pretends not to hear you."
   },
   2: {
@@ -244,12 +244,12 @@ export interface ObjectiveType {
   roomNumber: 6,
   roomTitle: "Patient Ward",
   story: "You approach the door. A simple pronoun is stored in a dict. The lookup uses the wrong case. The door is locked.",
-  imageUrl: "/images/patient-ward.jpg",
+  imageUrl: "/Room6-3.png",
   initialCode: 'pronouns = {"HE": "HE", "SHE": "SHE"} print(pronouns.get("he"))',
   objective: "Print the uppercase HE value.",
   requirements: ["Keep keys as is", "Use correct key", "No new keys added"],
   expectedOutput: "HE",
-  hint: "Use pronouns['HE'] or .get('HE').",
+  hint: "Use the drawer marked the same way.",
   errorFeedback: "Wrong drawer again. The cabinet returns nothing useful."
   },
   3: {
@@ -257,7 +257,7 @@ export interface ObjectiveType {
   roomNumber: 6,
   roomTitle: "Abandoned Patient Ward",
   story: "As the door clangs shut behind you, you realize you’re trapped in the abandoned patient ward. Cobwebs hang from ancient beds, but something is recent—the nurses’ log on a tablet. The only way out is to find the last patient who occupied this room, using clues hidden in the admission log.",
-  imageUrl: "/images/patient-ward.jpg",
+  imageUrl: "/Room6-3.png",
   initialCode: `patients_log = [
     {"name": "Elena", "admitted": "2021-05-12"},
     {"name": "Samuel", "admitted": "2022-01-03"},
@@ -281,12 +281,12 @@ print(last_patient)`,
   roomTitle: "Operating Theater",
   roomIntro: "Stack paws a chalk mark. \"We are here. Make it show here, not there.\"",
   story: "Your loop builds the wrong word by sorting letters.",
-  imageUrl: "/images/operating-theater.jpg",
+  imageUrl: "/Room7.png",
   initialCode: 'letters = list("HERE") print("".join(sorted(letters)))',
   objective: "Print HERE without sorting.",
   requirements: ["Do not change the letters", "Avoid sorting", "Join in original order"],
   expectedOutput: "HERE",
-  hint: "Join the list as is.",
+  hint: "Assemble without rearranging.",
   errorFeedback: "Alphabet soup. The display says EEHR and Stack groans."
   },
   2: {
@@ -294,12 +294,12 @@ print(last_patient)`,
   roomNumber: 7,
   roomTitle: "Operating Theater",
   story: "Under the cold theater lights, a tray of labeled syringes sits beside a faded note: 'For the first and last—choose only what comes before the end.' The monitor hums for a single correct token.",
-  imageUrl: "/images/operating-theater.jpg",
+  imageUrl: "/Room7.png",
   initialCode: 'words = ["BEFORE", "AFTER", "NEVER", "ALWAYS"] print(words[1])',
   objective: "From the options, print the token that comes first without reordering.",
   requirements: ["Do not reorder the list", "Print exactly one word", "Use an index, no loops"],
   expectedOutput: "BEFORE",
-  hint: "The beginning hides at index zero.",
+  hint: "Choose what comes first, literally.",
   errorFeedback: "The scalpel slips. You chose too late; only what comes first will do."
   },
   3: {
@@ -307,12 +307,12 @@ print(last_patient)`,
   roomNumber: 7,
   roomTitle: "Operating Theater",
   story: "You forgot the period. The heart monitor prefers full stops.",
-  imageUrl: "/images/operating-theater.jpg",
+  imageUrl: "/Room7.png",
   initialCode: 'word = "ALIVE." print(word.replace(".", ""))',
   objective: "Print ALIVE. including the period.",
   requirements: ["Keep the same word", "Do not strip punctuation", "Print exactly as stored"],
   expectedOutput: "ALIVE.",
-  hint: "Print word directly.",
+  hint: "Don’t edit the punctuation.",
   errorFeedback: "No punctuation, no passage. Stack taps the dot decal with his nose."
   }
   },
@@ -322,40 +322,40 @@ print(last_patient)`,
   roomNumber: 8,
   roomTitle: "Isolation Chamber",
   roomIntro: "Stack circles the room. \"Combine simple ideas cleanly.\"",
-  story: "The joiner uses the wrong separator. The panel expects a single connective.",
-  imageUrl: "/images/isolation-chamber.jpg",
-  initialCode: 'parts = ["AND"] print("-".join(parts))',
-  objective: "Print AND without extra characters.",
-  requirements: ["Do not add parts", "Use the correct separator", "One token output"],
+  story: "Three levers, one message. A note reads: 'When you must MERGE, choose the bridge, not the fork nor the turn.'",
+  imageUrl: "/Room8.png",
+  initialCode: 'connectors = ["AND", "OR", "BUT"]\nrules = {"merge": "AND", "choice": "OR", "contrast": "BUT"}\nmode = "merge"\nkey = rules.get(mode, "OR")\n# picks the position of the mode instead of the connector key\nprint(connectors.index(mode))',
+  objective: "Using the rules dict and the connectors list, print the connector for the current mode.",
+  requirements: ["Use the dict to find the connector key", "Use the list to verify or retrieve it", "Print exactly one word"],
   expectedOutput: "AND",
-  hint: "Join with an empty string or print the token.",
-  errorFeedback: "You added dashes. The chamber does not like decorations."
+  hint: "Find the label first, then use the list to confirm it.",
+  errorFeedback: "You pointed to the mode itself, not its connector. The levers don’t budge."
   },
   2: {
   part: 2,
   roomNumber: 8,
   roomTitle: "Isolation Chamber",
   story: "A counter never increments. The loop still finishes but the value stays zero.",
-  imageUrl: "/images/isolation-chamber.jpg",
-  initialCode: 'count = 0 for _ in range(2): pass print("THEN" if count == 2 else "NOW")',
-  objective: "Increment count so the condition prints THEN.",
-  requirements: ["Modify the loop body", "Use += 1", "Do not change the range"],
+  imageUrl: "/Room8.png",
+  initialCode: 'deltas = {"inc": 1, "dec": -1}\nsteps = ["inc", "inc"]\ncount = 0\nfor s in steps:\n    pass\nprint("THEN" if count == 2 else "NOW")',
+  objective: "Use the steps list and the deltas dict to adjust count so it prints THEN.",
+  requirements: ["Use the dict to translate each step", "Apply all steps to count", "Do not change the provided steps"],
   expectedOutput: "THEN",
-  hint: "Put count += 1 inside the loop.",
-  errorFeedback: "Stuck at zero. Time refuses to advance."
+  hint: "Translate each step into its effect before applying it.",
+  errorFeedback: "You read the script but never acted. The chamber clock doesn’t move."
   },
   3: {
   part: 3,
   roomNumber: 8,
   roomTitle: "Isolation Chamber",
-  story: "Your function returns its input unchanged. The chamber wants a stronger word.",
-  imageUrl: "/images/isolation-chamber.jpg",
-  initialCode: 'def amplify(word): return word print(amplify("RETURNED"))',
-  objective: "Return the input unchanged is fine, but the bug should still make the print show RETURNED.",
-  requirements: ["Do not change the call", "Ensure the function returns the argument", "Keep it simple"],
+  story: "A scribble on the glass: 'Follow the longest thread; only those marked by URN count.'",
+  imageUrl: "/Room8.png",
+  initialCode: 'def pick(entries):\n    chosen = entries[0]\n    for e in entries:\n        # prefers shorter and ignores the flag\n        if len(e["text"]) < len(chosen["text"]) and "URN" in e["text"]:\n            chosen = e\n    return chosen["text"]\n\nwords = [\n    {"text": "RETURNED", "tag": True},\n    {"text": "RENDERED", "tag": False},\n    {"text": "RETURN", "tag": True},\n]\nprint(pick(words))',
+  objective: "Given a list of dict entries, return the longest text that contains 'URN' and is tagged True.",
+  requirements: ["Use both the list and each entry’s fields", "Prefer longer matches", "Respect the tag flag"],
   expectedOutput: "RETURNED",
-  hint: "Return the parameter as is.",
-  errorFeedback: "You tried to modify what was already correct. The room snorts at overengineering."
+  hint: "Check both the mark and the length before you choose.",
+  errorFeedback: "You traced a short, unmarked line. The longest cable stays unlatched."
   }
   },
   9: {
@@ -365,12 +365,12 @@ print(last_patient)`,
   roomTitle: "Records Room",
   roomIntro: "Stack noses a filing cabinet. \"Direction matters.\"",
   story: "You chose the wrong preposition from the list.",
-  imageUrl: "/images/records-room.jpg",
+  imageUrl: "/Room9.png",
   initialCode: 'preps = ["FROM", "TO"] print(preps[1])',
   objective: "Print the first preposition.",
   requirements: ["Do not sort", "Use the correct index", "Print a single token"],
   expectedOutput: "FROM",
-  hint: "Index zero.",
+  hint: "Go with the first option.",
   errorFeedback: "Wrong direction. The cabinet rolls the other way."
   },
   2: {
@@ -378,12 +378,12 @@ print(last_patient)`,
   roomNumber: 9,
   roomTitle: "Records Room",
   story: "Another article check. The code prints the wrong one.",
-  imageUrl: "/images/records-room.jpg",
+  imageUrl: "/Room9.png",
   initialCode: 'arts = ["THE", "A"] print(arts[-1])',
   objective: "Print THE using indexing.",
   requirements: ["No new strings", "Select the correct item", "Do not reorder the list"],
   expectedOutput: "THE",
-  hint: "Negative one picks the last item. You want the first.",
+  hint: "Avoid the tail; aim for the front.",
   errorFeedback: "Indefinite mistake. The lock wanted THE."
   },
   3: {
@@ -391,12 +391,12 @@ print(last_patient)`,
   roomNumber: 9,
   roomTitle: "Records Room",
   story: "You printed the container type instead of its value.",
-  imageUrl: "/images/server-room.jpg",
+  imageUrl: "/Room9.png",
   initialCode: 'source = {"name": "SERVER"} print(source)',
   objective: "Print only the value under 'name'.",
   requirements: ["Use the existing dict", "Select by key", "Print a single word"],
   expectedOutput: "SERVER",
-  hint: "Use source['name'].",
+  hint: "Open the folder and read the label inside.",
   errorFeedback: "Braces on screen. The reader wanted the label inside."
   }
   },
@@ -407,38 +407,38 @@ print(last_patient)`,
   roomTitle: "Control Nexus",
   roomIntro: "Stack trots to the central console. \"Almost there. One last pattern to fix.\"",
   story: "You picked the wrong conjunction. The finale needs a sharp pivot.",
-  imageUrl: "/images/server-room.jpg",
+  imageUrl: "/Room10.png",
   initialCode: 'options = ["AND", "BUT"] print(options[0])',
   objective: "Print the second item.",
   requirements: ["Do not change the list", "Use correct index", "Print a single word"],
   expectedOutput: "BUT",
-  hint: "Index one.",
+  hint: "Take the turn, not the continuation.",
   errorFeedback: "Too gentle. The story needs a turn, not a continuation."
   },
   2: {
   part: 2,
   roomNumber: 10,
   roomTitle: "Control Nexus",
-  story: "A negation is flipped. The truth should cut deeper.",
-  imageUrl: "/images/server-room.jpg",
-  initialCode: 'flag = False print("EVER" if flag else "NEVER")',
-  objective: "Print NEVER.",
-  requirements: ["Do not change flag", "Keep the two options", "Select the correct branch"],
+  story: "The core speaks in uppercase truths. A label hangs: 'Normalize before you ask.'",
+  imageUrl: "/Room10.png",
+  initialCode: 'mapping = {"TRUE": "EVER", "FALSE": "NEVER"} flag = "false" print(mapping.get(flag))',
+  objective: "Use the mapping to print the correct token for the flag, regardless of the flag's case.",
+  requirements: ["Do not change the mapping keys/values", "Normalize the flag string", "Use the dictionary lookup"],
   expectedOutput: "NEVER",
-  hint: "flag is False. The else branch should already print NEVER.",
-  errorFeedback: "You nearly inverted the twist. Keep the negation straight."
+  hint: "Match the console’s case before you ask.",
+  errorFeedback: "Unnormalized input. The core returns nothing and the door stays sealed."
   },
   3: {
   part: 3,
   roomNumber: 10,
   roomTitle: "Control Nexus",
   story: "The final line should assemble the message from earlier tokens without changing their case.",
-  imageUrl: "/images/server-room.jpg",
+  imageUrl: "/Room10.png",
   initialCode: 'pieces = ["WAKE", "UP", "RAVENCREST,", "STACK", "THE", "DOG", "DETECTIVE,", "UNLOCKED", "THE", "DOORS,", "BUT", "THE", "LOGS", "SAY", "HE", "WAS", "NEVER", "ALIVE."] sentence = " ".join(pieces).lower() print(sentence)',
   objective: "Assemble and print the final sentence with original casing preserved.",
   requirements: ["Do not alter the words", "Join with single spaces", "Keep commas as part of the tokens", "Do not change case"],
   expectedOutput: "WAKE UP RAVENCREST, STACK THE DOG DETECTIVE, UNLOCKED THE DOORS, BUT THE LOGS SAY HE WAS NEVER ALIVE.",
-  hint: "Remove the lowercasing and keep the join.",
+  hint: "Assemble the line without changing how it’s written.",
   errorFeedback: "You hushed the reveal. The console wanted the truth exactly as collected."
   }
   }

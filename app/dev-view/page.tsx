@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { objectives } from "@/lib/objectives"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -123,6 +124,15 @@ export default function DevView() {
                       ) : (
                         <ChevronRight className="w-5 h-5 text-muted-foreground" />
                       )}
+                      <div className="relative h-10 w-16 overflow-hidden rounded border border-border bg-muted/30">
+                        <Image
+                          src={Object.values(parts)[0].imageUrl}
+                          alt={`Room ${roomNumber} thumbnail`}
+                          fill
+                          className="object-cover"
+                          priority
+                        />
+                      </div>
                       <div>
                         <h2 className="text-xl font-mono font-bold text-primary">
                           Room {roomNumber}: {Object.values(parts)[0].roomTitle}
@@ -157,6 +167,14 @@ export default function DevView() {
                                 ) : (
                                   <ChevronRight className="w-4 h-4" />
                                 )}
+                                <div className="relative h-8 w-12 overflow-hidden rounded border border-border bg-muted/20">
+                                  <Image
+                                    src={objective.imageUrl}
+                                    alt={`Room ${roomNumber} Part ${partNum} thumbnail`}
+                                    fill
+                                    className="object-cover"
+                                  />
+                                </div>
                                 <div>
                                   <h3 className="font-mono font-semibold text-lg">
                                     Part {partNum}

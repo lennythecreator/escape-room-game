@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { CheckCircle2, XCircle, Play, Loader2 } from "lucide-react"
 import { executePythonCode } from "@/lib/python-executor"
+import { GameHint } from "@/components/game-hint"
 
 interface CodeEditorProps {
   initialCode: string
@@ -139,13 +140,7 @@ export function CodeEditor({ initialCode, expectedOutput, hint, onSuccess, valid
         </Button>
       </div>
 
-      {showHint && (
-        <Card className="p-4 bg-accent/10 border-accent">
-          <p className="text-sm text-accent-foreground font-mono">
-            <span className="font-bold">HINT:</span> {hint}
-          </p>
-        </Card>
-      )}
+      <GameHint open={showHint} hint={hint} onClose={() => setShowHint(false)} />
     </div>
   )
 }
