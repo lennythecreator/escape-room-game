@@ -266,14 +266,14 @@ export default function DevView() {
                                 <div className="grid grid-cols-2 gap-4 text-sm">
                                   <div>
                                     <span className="font-semibold text-muted-foreground">
-                                      Room:
-                                    </span>{" "}
+                                      Room:{" "}
+                                    </span>
                                     {objective.roomTitle}
                                   </div>
                                   <div>
                                     <span className="font-semibold text-muted-foreground">
-                                      Image:
-                                    </span>{" "}
+                                      Image:{" "}
+                                    </span>
                                     {objective.imageUrl}
                                   </div>
                                 </div>
@@ -307,4 +307,3 @@ export default function DevView() {
     </div>
   )
 }
-
