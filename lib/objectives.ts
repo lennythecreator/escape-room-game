@@ -145,7 +145,7 @@ export interface ObjectiveType {
   part: 1,
   roomNumber: 4,
   roomTitle: "Pharmacy",
-  roomIntro: "Stack paws at a pill counter. \"Dose matters. Detail matters. Case matters.\"",
+  roomIntro: "The next room is a rundown pharmacy. Stack paws at a pill counter. \"Dose matters. Detail matters. Case matters.\"",
   story: "You are filtering for a token but the equality check misses due to case.",
   imageUrl: "/Room4.png",
   initialCode: 'words = ["TRUST", "THE", "DOG"] picked = [] for w in words: if w == "trust": picked.append(w) print(picked[0] if picked else "THE")',
@@ -243,7 +243,7 @@ export interface ObjectiveType {
   part: 2,
   roomNumber: 6,
   roomTitle: "Patient Ward",
-  story: "A simple pronoun is stored in a dict. The lookup uses the wrong case.",
+  story: "You approach the door. A simple pronoun is stored in a dict. The lookup uses the wrong case. The door is locked.",
   imageUrl: "/images/patient-ward.jpg",
   initialCode: 'pronouns = {"HE": "HE", "SHE": "SHE"} print(pronouns.get("he"))',
   objective: "Print the uppercase HE value.",
@@ -255,15 +255,23 @@ export interface ObjectiveType {
   3: {
   part: 3,
   roomNumber: 6,
-  roomTitle: "Patient Ward",
-  story: "Your branch says the patient is absent. The bed log says otherwise.",
+  roomTitle: "Abandoned Patient Ward",
+  story: "As the door clangs shut behind you, you realize you’re trapped in the abandoned patient ward. Cobwebs hang from ancient beds, but something is recent—the nurses’ log on a tablet. The only way out is to find the last patient who occupied this room, using clues hidden in the admission log.",
   imageUrl: "/images/patient-ward.jpg",
-  initialCode: 'present = True print("WERE" if not present else "WAS")',
-  objective: "Print WAS when present is True.",
-  requirements: ["Do not change the variable", "Keep the two choices", "Fix the condition"],
-  expectedOutput: "WAS",
-  hint: "Remove the not.",
-  errorFeedback: "Pluralized the singular. The bed sensor emits a flat beep."
+  initialCode: `patients_log = [
+    {"name": "Elena", "admitted": "2021-05-12"},
+    {"name": "Samuel", "admitted": "2022-01-03"},
+    {"name": "Ada", "admitted": "2023-07-28"}
+]
+last_patient = ""
+for i in range(len(patients_log)):
+    last_patient = patients_log[i]["name"]
+print(last_patient)`,
+  objective: "Print the name of the patient with the latest admission date. The log may not be ordered. Fix the code so it prints the correct name.",
+  requirements: ["Do not change the patient data", "Compare the admission dates to find the latest one", "Only use variables already provided"],
+  expectedOutput: "Ada",
+  hint: "You need to check more than just their order.",
+  errorFeedback: "You hear a faint voice, but it fades. Are you sure you found the most recent patient here?"
   }
   },
   7: {
@@ -285,14 +293,14 @@ export interface ObjectiveType {
   part: 2,
   roomNumber: 7,
   roomTitle: "Operating Theater",
-  story: "An index skips past the right token. Off by one again.",
+  story: "Under the cold theater lights, a tray of labeled syringes sits beside a faded note: 'For the first and last—choose only what comes before the end.' The monitor hums for a single correct token.",
   imageUrl: "/images/operating-theater.jpg",
-  initialCode: 'words = ["BEFORE", "AFTER"] print(words[1])',
-  objective: "Print the first item only.",
-  requirements: ["No reordering", "Use correct index", "One token"],
+  initialCode: 'words = ["BEFORE", "AFTER", "NEVER", "ALWAYS"] print(words[1])',
+  objective: "From the options, print the token that comes first without reordering.",
+  requirements: ["Do not reorder the list", "Print exactly one word", "Use an index, no loops"],
   expectedOutput: "BEFORE",
-  hint: "words[0].",
-  errorFeedback: "Too late. AFTER is not the hint this room needs."
+  hint: "The beginning hides at index zero.",
+  errorFeedback: "The scalpel slips. You chose too late; only what comes first will do."
   },
   3: {
   part: 3,
